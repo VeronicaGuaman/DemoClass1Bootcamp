@@ -8,7 +8,7 @@ namespace DemoBooks.services
         public static List<Book> books = new List<Book>();
 
         //Método para crear un libro, este método es llamado desde el Program.cs
-        public static string AddBook() 
+        public static string AddBook()
         {
             //Ingreso de datos por consola
             Console.WriteLine("AddBook");
@@ -35,6 +35,38 @@ namespace DemoBooks.services
             return $"El libro {book.Title} ha sido agregado correctamente";
 
         }
+
+        public static string DeleteBook()
+        {
+            Console.WriteLine("Borrar Libro");
+
+            Console.WriteLine("Ingrese el Id del libro");
+            int id = Convert.ToInt16(Console.ReadLine());
+
+            //Buscar el libro por el id ingresado, dentro de la lista de libros
+            var book = books.FirstOrDefault(x => x.Id == id);
+            books.RemoveAll(book => book.Id == id);
+            return $"El libro con el id {id} ha sido eliminado correctamente";
+        }
+
+        public static string GetByName()
+        {
+            Console.WriteLine("Encontrar libro por el nombre");
+            Console.WriteLine("Ingrese el titulo del libro");
+            string title = Console.ReadLine();
+            var foundBook = books.Find(book => book.Title == title);
+
+            if (foundBook != null)
+            {
+                return $"Libro encontrado: {foundBook.Title} de {foundBook.Author}, categoría {foundBook.Category}. {(foundBook.IsAvailable ? "Libro disponible." : "Libro no disponible.")}";
+
+            }
+            else
+            {
+                return $"Libro con el título '{title}' no encontrado.";
+            }
+        }
+
 
         //Método para actualizar un libro llamado desde el Program.cs
         public static string UpdateBook()
@@ -75,7 +107,7 @@ namespace DemoBooks.services
             Console.WriteLine("Listado de Libros");
 
             //Validar si existen libros en la lista
-            if(books == null)
+            if (books == null)
                 message = "No hay libros disponibles";
 
 
