@@ -1,4 +1,4 @@
-En este proyecto trabajamos con las funcionalidades clave de C# 12
+En este proyecto desarrollamos una aplicación de consola, la cual nos permite realizar operaciones CRUD para manipulación de un Libro
 
 Consideraciones
 
